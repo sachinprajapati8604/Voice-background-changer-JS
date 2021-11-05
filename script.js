@@ -16,23 +16,23 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 var diagnostic = document.querySelector('.voice-op');
-console.log(diagnostic)
+// console.log(diagnostic)
 var bg = document.querySelector('body');
 var colorRow = document.getElementById('color-row');
 var hints = document.querySelector('.hints');
 var speakIcon = document.getElementById('speak');
-console.log(speakIcon)
+// console.log(speakIcon)
 
 speakIcon.onclick = function () {
     recognition.start();
     speakIcon.innerHTML = "<h2>I am listening...</h2>";
     console.log('Ready to receive a color command.');
 }
-console.log("Recognition--> ", recognition)
+// console.log("Recognition--> ", recognition)
 
 var colorHTML = '';
 colors.forEach(function (v, i, a) {
-    console.log(v, i);
+    // console.log(v, i);
     colorHTML += ' <div class="col my-2 p-2 mx-2 text-center" style=" background-color:' + v + ';">' + v + '</div>';
 });
 hints.innerHTML = colorHTML;
@@ -43,7 +43,7 @@ hints.innerHTML = colorHTML;
 // }
 
 recognition.onresult = function (event) {
-    console.log(event)
+    // console.log(event)
     // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
     // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
     // It has a getter so it can be accessed like an array
@@ -56,7 +56,7 @@ recognition.onresult = function (event) {
 
     diagnostic.textContent = 'Result received: ' + color + '.';
     bg.style.backgroundColor = color;
-    console.log('Confidence: ' + event.results[0][0].confidence);
+    // console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
 recognition.onspeechend = function () {
@@ -65,7 +65,7 @@ recognition.onspeechend = function () {
 }
 
 recognition.onnomatch = function (event) {
-    console.log("Word not matched")
+    // console.log("Word not matched")
     diagnostic.textContent = "I didn't recognise that color.";
     speakIcon.innerHTML = `  <h5 class="mt-3" >Tap to speak  </h5><img  src="mic.png" alt="img not found" width="50" height="50">`;
 
